@@ -1,0 +1,44 @@
+name: Terraform Multi-Stage Pipeline (Single Branch)
+
+on:
+  push:
+    branches:
+      - main # or master
+    paths:
+      - 'environments/**'
+      - '.github/workflows/terraform.yml'
+      - 'modules/**'
+      - 'variables.tf'
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: "us-east-1"
+  TERRAFORM_VERSION: "1.7.0"
+
+jobs:
+  dev:
+    name: Terraform Dev
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
+    environment: development
+    steps:
+      # ... (Terraform steps for dev, working directory: environments/dev) ...
+
+  staging:
+    name: Terraform Staging
+    runs-on: ubuntu-latest
+    needs: dev
+    if: ${{ contains(github.event.commits[0].modified, 'environments/staging/') }}
+    environment: staging
+    steps:
+      # ... (Terraform steps for staging, working directory: environments/staging) ...
+
+  prod:
+    name: Terraform Prod
+    runs-on: ubuntu-latest
+    needs: staging
+    if: ${{ contains(github.event.commits[0].modified, 'environments/prod/') }}
+    environment: production
+    steps:
+      # ... (Terraform steps for prod, working directory: environments/prod) ...
