@@ -17,6 +17,13 @@ env:
   TERRAFORM_VERSION: "1.7.0"
 
 jobs:
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    #environment: dev
+    steps:
+      - name: COmmit id
+        echo: ${{ github.event.commits[0].modified }}
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
