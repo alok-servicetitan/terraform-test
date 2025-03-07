@@ -20,7 +20,7 @@ jobs:
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
+    #if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
     environment: development
     steps:
       - name: Run Terraform
