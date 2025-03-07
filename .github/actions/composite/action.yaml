@@ -1,0 +1,13 @@
+# .github/actions/composite/action.yml
+name: 'Sample Composite Action'
+description: 'A simple composite action that runs multiple steps'
+runs:
+  using: "composite"
+  steps:
+    - name: Echo a message
+      shell: bash
+      run: echo "Hello from the composite action!"
+
+    - name: List files in the workspace
+      shell: bash
+      run: ls -al
