@@ -23,7 +23,7 @@ jobs:
     #environment: dev
     steps:
       - name: COmmit id
-        run: echo ${{ github.event.head_commit.id }}
+        run: echo ${{ github.event.head_commit.modified }}
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
