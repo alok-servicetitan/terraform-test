@@ -27,8 +27,8 @@ jobs:
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
-    #environment: dev
+    #if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
+    environment: dev
     steps:
       - name: Run Terraform
         uses: alok-servicetitan/terraform-test/actions/composite@main
@@ -36,7 +36,7 @@ jobs:
     name: Terraform Staging
     runs-on: ubuntu-latest
     needs: dev
-    if: ${{ contains(github.event.commits[0].modified, 'environments/staging/') }}
+    #if: ${{ contains(github.event.commits[0].modified, 'environments/staging/') }}
     environment: staging
     steps:
       - name: Run Terraform
@@ -45,7 +45,7 @@ jobs:
     name: Terraform Prod
     runs-on: ubuntu-latest
     needs: staging
-    if: ${{ contains(github.event.commits[0].modified, 'environments/prod/') }}
+    #if: ${{ contains(github.event.commits[0].modified, 'environments/prod/') }}
     environment: production
     steps:
       - name: Run Terraform
