@@ -23,7 +23,7 @@ jobs:
     if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
     environment: development
     steps:
-      - uses: ../../actions/composite
+      - uses: ./.github/actions/composite
   staging:
     name: Terraform Staging
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
     if: ${{ contains(github.event.commits[0].modified, 'environments/staging/') }}
     environment: staging
     steps:
-      - uses: ../../actions/composite
+      - uses: ./.github/actions/composite
   prod:
     name: Terraform Prod
     runs-on: ubuntu-latest
@@ -39,4 +39,4 @@ jobs:
     if: ${{ contains(github.event.commits[0].modified, 'environments/prod/') }}
     environment: production
     steps:
-      - uses: ../../actions/composite
+      - uses: ./.github/actions/composite
