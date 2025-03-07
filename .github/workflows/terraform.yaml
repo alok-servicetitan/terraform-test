@@ -35,8 +35,8 @@ jobs:
 
           # Set the output variable
           echo "::set-output name=files::$changed_files_array"    
-        outputs:
-          matrix: ${{ steps.changed-files.outputs.matrix }} 
+    outputs:
+      matrix: ${{ steps.changed-files.outputs.matrix }} 
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
