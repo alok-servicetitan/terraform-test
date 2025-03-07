@@ -23,7 +23,7 @@ jobs:
     #environment: dev
     steps:
       - name: COmmit id
-        run: echo ${{ github.event.commits[0].modified[*].path }}
+        run: echo ${{ github.event.commits[0].modified[*].filename }}
         
   dev:
     name: Terraform Dev
