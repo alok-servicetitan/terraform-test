@@ -33,7 +33,8 @@ jobs:
     environment: staging
     steps:
       - name: Run Terraform
-        uses: alok-servicetitan/terraform-test/actions/composite@main  prod:
+        uses: alok-servicetitan/terraform-test/actions/composite@main  
+  prod:
     name: Terraform Prod
     runs-on: ubuntu-latest
     needs: staging
