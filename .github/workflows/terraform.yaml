@@ -45,6 +45,7 @@ jobs:
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
+    needs: Debug
     #if: ${{ contains(github.event.commits[0].modified, 'environments/dev/') }}
     environment: dev
     steps:
@@ -52,7 +53,7 @@ jobs:
         uses: alok-servicetitan/terraform-test/actions/composite@main
       - name: Get the output files
         id: out
-        run: echo ${{ debug.files }}
+        run: echo ${{ needs.debug.outputs.files }}
   staging:
     name: Terraform Staging
     runs-on: ubuntu-latest
