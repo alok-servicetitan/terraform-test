@@ -24,7 +24,19 @@ jobs:
     steps:
       - name: COmmit id
         run: echo ${{ github.event.commits[0].modified[*].filename }}
-        
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get the list of changed files
+          changed_files=$(git diff --name-only HEAD~1 HEAD) 
+
+          # Convert the list to a JSON array
+          changed_files_array=$(echo "$changed_files" | jq -R -s -c 'split("\n")[:-1]')
+
+          # Set the output variable
+          echo "::set-output name=files::$changed_files_array"    
+        outputs:
+          matrix: ${{ steps.changed-files.outputs.matrix }} 
   dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
