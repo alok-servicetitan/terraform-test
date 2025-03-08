@@ -23,7 +23,7 @@ jobs:
     #environment: dev
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2  # Important for git diff to work correctly
       - name: COmmit id
